@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuela Secundaria Nro. 56 - La Plata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-6: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M30 0L35 25L60 30L35 35L30 60L25 35L0 30L25 25Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            animation: sparkle 20s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-60px); }
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        /* Login Button in Header */
+        .header-auth {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-info.show {
+            display: flex;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .logout-btn, .login-header-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 0.625rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .logout-btn:hover, .login-header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .login-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.4s ease;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .login-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .login-close:hover {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .login-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .login-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .login-error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            font-size: 0.9rem;
+            border-left: 4px solid #dc2626;
+        }
+
+        .login-error.show {
+            display: block;
+        }
+
+        .login-info {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .login-info strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: white;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-btn.locked::after {
+            content: '🔒';
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Course Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-1);
+        }
+
+        .course-card:nth-child(3n+2)::before {
+            background: var(--gradient-2);
+        }
+
+        .course-card:nth-child(3n+3)::before {
+            background: var(--gradient-3);
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .view-materials-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .view-materials-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        /* Teacher Section */
+        .teacher-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .panel-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .panel-header::before {
+            content: '📚';
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        select:focus, input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-label {
+            background: var(--bg-main);
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .file-input-label:hover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .file-input-label::before {
+            content: '📎';
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Materials Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .materials-list {
+            margin-top: 1.5rem;
+        }
+
+        .material-item {
+            background: var(--bg-main);
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .material-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .material-subject {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .material-teacher {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-description {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .material-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .no-materials {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .no-materials::before {
+            content: '📭';
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            font-weight: 600;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Info Panel & Editable Sections */
+        .info-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .editable-section {
+            margin-top: 1.5rem;
+        }
+
+        .content-display {
+            background: var(--bg-main);
+            padding: 2rem;
+            border-radius: 12px;
+            min-height: 200px;
+            border: 2px solid var(--border);
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-size: 1rem;
+        }
+
+        .content-display:empty::before {
+            content: 'No hay contenido cargado todavía.';
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .edit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .edit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Edit Modal */
+        .edit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        .edit-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        .edit-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .edit-modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .edit-textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            resize: vertical;
+        }
+
+        .edit-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: flex-end;
+        }
+
+        .save-edit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-edit-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .cancel-edit-btn {
+            background: var(--text-secondary);
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-edit-btn:hover {
+            background: #475569;
+        }
+
+        /* Access Denied */
+        .access-denied {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .access-denied-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .access-denied h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .access-denied p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .header-text h1 {
+                font-size: 2rem;
+            }
+
+            .tabs-container {
+                padding: 0 1rem;
+            }
+
+            .tab-btn {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content, .edit-modal-content, .login-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            .teacher-panel, .info-panel {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1>🏫 Escuela Secundaria Nro. 56</h1>
+                <p class="subtitle">La Plata - Buenos Aires</p>
+            </div>
+            <div class="header-auth">
+                <div class="user-info" id="userInfo">
+                    <span class="user-name" id="userName"></span>
+                    <button class="logout-btn" onclick="logout()">🔓 Cerrar Sesión</button>
+                </div>
+                <button class="login-header-btn" id="loginHeaderBtn" onclick="openLoginModal()">🔐 Iniciar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <div class="tabs-container">
+            <button class="tab-btn" onclick="switchTab('authorities')">👥 Autoridades</button>
+            <button class="tab-btn active" onclick="switchTab('students')">👨‍🎓 Estudiantes</button>
+            <button class="tab-btn locked" onclick="switchTab('teachers')">👩‍🏫 Profesores</button>
+            <button class="tab-btn" onclick="switchTab('agreements')">📋 Acuerdos de Convivencia</button>
+            <button class="tab-btn" onclick="switchTab('regulations')">📜 Normativa</button>
+            <button class="tab-btn" onclick="switchTab('dates')">📅 Fechas Importantes</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Authorities Tab -->
+        <div id="authorities-tab" class="tab-content">
+            <div class="info-panel">
+                <h2 class="panel-header">Autoridades de la Escuela</h2>
+                <div class="editable-section">
+                    <div id="authoritiesContent" class="content-display"></div>
+                    <button class="edit-btn" onclick="requestEditAccess('authorities')" id="editAuthoritiesBtn">✏️ Editar Contenido</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Students Tab -->
+        <div id="students-tab" class="tab-content active">
+            <h2 class="panel-header">Selecciona tu curso</h2>
+            <div class="courses-grid" id="coursesGrid"></div>
+        </div>
+
+        <!-- Teachers Tab -->
+        <div id="teachers-tab" class="tab-content">
+            <div id="teacherAccessContent">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+
+        <!-- Agreements Tab -->
+        <div id="agreements-tab" class="tab-content">
+            <div class="info-panel">
+                <h2 class="panel-header">Acuerdos Institucionales de Convivencia</h2>
+                <div class="editable-section">
+                    <div id="agreementsContent" class="content-display"></div>
+                    <button class="edit-btn" onclick="requestEditAccess('agreements')" id="editAgreementsBtn">✏️ Editar Contenido</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regulations Tab -->
+        <div id="regulations-tab" class="tab-content">
+            <div class="info-panel">
+                <h2 class="panel-header">Normativa Escolar</h2>
+                <div class="editable-section">
+                    <div id="regulationsContent" class="content-display"></div>
+                    <button class="edit-btn" onclick="requestEditAccess('regulations')" id="editRegulationsBtn">✏️ Editar Contenido</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Dates Tab -->
+        <div id="dates-tab" class="tab-content">
+            <div class="info-panel">
+                <h2 class="panel-header">Fechas Importantes</h2>
+                <div class="editable-section">
+                    <div id="datesContent" class="content-display"></div>
+                    <button class="edit-btn" onclick="requestEditAccess('dates')" id="editDatesBtn">✏️ Editar Contenido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <button class="login-close" onclick="closeLoginModal()">&times;</button>
+            <div class="login-header">
+                <h2>🔐 Acceso Restringido</h2>
+                <p class="login-subtitle">Solo personal autorizado</p>
+            </div>
+            
+            <div class="login-error" id="loginError">
+                Usuario o contraseña incorrectos
+            </div>
+
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" placeholder="Ingresá tu usuario" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="Ingresá tu contraseña" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="login-submit">Iniciar Sesión</button>
+            </form>
+
+            <div class="login-info">
+                <!-- <strong>💡 Usuarios de prueba:</strong>
+                <div>Director: <code>director</code> / <code>escuela56</code></div>
+                <div>Profesor: <code>profesor</code> / <code>escuela56</code></div>
+                -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Materials Modal -->
+    <div id="materialsModal" class="modal" onclick="closeModalOnBackdrop(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="materials-list" id="materialsList"></div>
+        </div>
+    </div>
+
+    <!-- Edit Content Modal -->
+    <div id="editModal" class="edit-modal" onclick="closeEditModalOnBackdrop(event)">
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h3 class="edit-modal-title" id="editModalTitle"></h3>
+                <button class="close-btn" onclick="closeEditModal()">&times;</button>
+            </div>
+            <textarea id="editTextarea" class="edit-textarea" placeholder="Escribí el contenido aquí..."></textarea>
+            <div class="edit-actions">
+                <button class="cancel-edit-btn" onclick="closeEditModal()">Cancelar</button>
+                <button class="save-edit-btn" onclick="saveContent()">💾 Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== AUTHENTICATION SYSTEM ==========
+        
+        // User credentials (in production, this should be on a server)
+        const users = {
+            'director': { password: 'escuela56', role: 'admin', name: 'Director/a' },
+            'profesor': { password: 'escuela56', role: 'teacher', name: 'Profesor/a' },
+            'secretaria': { password: 'escuela56', role: 'admin', name: 'Secretaria' }
+        };
+
+        let currentUser = null;
+
+        // Check if user is logged in on page load
+        function checkAuth() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateAuthUI();
+            }
+        }
+
+        // Handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+
+            if (users[username] && users[username].password === password) {
+                currentUser = {
+                    username: username,
+                    role: users[username].role,
+                    name: users[username].name
+                };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                updateAuthUI();
+                closeLoginModal();
+                errorDiv.classList.remove('show');
+                
+                // If on teachers tab, reload it
+                if (document.getElementById('teachers-tab').classList.contains('active')) {
+                    loadTeacherSection();
+                }
+            } else {
+                errorDiv.classList.add('show');
+            }
+        }
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthUI();
+            
+            // If on teachers tab, switch to students
+            if (document.getElementById('teachers-tab').classList.contains('active')) {
+                switchTab('students');
+            }
+            
+            loadTeacherSection();
+        }
+
+        // Update UI based on auth status
+        function updateAuthUI() {
+            const userInfo = document.getElementById('userInfo');
+            const userName = document.getElementById('userName');
+            const loginBtn = document.getElementById('loginHeaderBtn');
+
+            if (currentUser) {
+                userName.textContent = `👤 ${currentUser.name}`;
+                userInfo.classList.add('show');
+                loginBtn.style.display = 'none';
+                
+                // Update tabs
+                document.querySelectorAll('.tab-btn.locked').forEach(btn => {
+                    btn.classList.remove('locked');
+                });
+            } else {
+                userInfo.classList.remove('show');
+                loginBtn.style.display = 'block';
+                
+                // Lock teacher tab
+                const teacherTab = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
+                    btn.textContent.includes('Profesores')
+                );
+                if (teacherTab && !teacherTab.classList.contains('locked')) {
+                    teacherTab.classList.add('locked');
+                }
+            }
+        }
+
+        // Open login modal
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('username').focus();
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('loginError').classList.remove('show');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        // Request edit access
+        function requestEditAccess(section) {
+            if (!currentUser) {
+                openLoginModal();
+                return;
+            }
+            editContent(section);
+        }
+
+        // ========== DATA STRUCTURES ==========
+        let materials = {};
+        let editableContent = {
+            authorities: '',
+            agreements: '',
+            regulations: '',
+            dates: ''
+        };
+        let currentEditSection = '';
+
+        // Course configuration
+        const courses = [
+            { id: '1a', name: 'Primero A', year: 1, section: 'A' },
+            { id: '1b', name: 'Primero B', year: 1, section: 'B' },
+            { id: '1c', name: 'Primero C', year: 1, section: 'C' },
+            { id: '2a', name: 'Segundo A', year: 2, section: 'A' },
+            { id: '2b', name: 'Segundo B', year: 2, section: 'B' },
+            { id: '2c', name: 'Segundo C', year: 2, section: 'C' },
+            { id: '3a', name: 'Tercero A', year: 3, section: 'A' },
+            { id: '3b', name: 'Tercero B', year: 3, section: 'B' },
+            { id: '3c', name: 'Tercero C', year: 3, section: 'C' },
+            { id: '4a', name: 'Cuarto A', year: 4, section: 'A' },
+            { id: '4b', name: 'Cuarto B', year: 4, section: 'B' },
+            { id: '4c', name: 'Cuarto C', year: 4, section: 'C' },
+            { id: '5a', name: 'Quinto A', year: 5, section: 'A' },
+            { id: '5b', name: 'Quinto B', year: 5, section: 'B' },
+            { id: '5c', name: 'Quinto C', year: 5, section: 'C' },
+            { id: '6a', name: 'Sexto A', year: 6, section: 'A' },
+            { id: '6b', name: 'Sexto B', year: 6, section: 'B' },
+            { id: '6c', name: 'Sexto C', year: 6, section: 'C' }
+        ];
+
+        // ========== INITIALIZATION ==========
+        function init() {
+            checkAuth();
+            renderCourseCards();
+            populateCourseSelect();
+            loadMaterials();
+            loadEditableContent();
+            displayAllContent();
+            loadTeacherSection();
+        }
+
+        // ========== COURSE FUNCTIONS ==========
+        function renderCourseCards() {
+            const grid = document.getElementById('coursesGrid');
+            grid.innerHTML = courses.map(course => `
+                <div class="course-card" onclick="viewMaterials('${course.id}', '${course.name}')">
+                    <h3 class="course-title">${course.name}</h3>
+                    <p class="course-subtitle">Año ${course.year} - Sección ${course.section}</p>
+                    <button class="view-materials-btn">Ver Materiales</button>
+                </div>
+            `).join('');
+        }
+
+        function populateCourseSelect() {
+            const select = document.getElementById('courseSelect');
+            if (select) {
+                courses.forEach(course => {
+                    const option = document.createElement('option');
+                    option.value = course.id;
+                    option.textContent = course.name;
+                    select.appendChild(option);
+                });
+            }
+        }
+
+        // ========== TAB SWITCHING ==========
+        function switchTab(tab) {
+            // Check if trying to access teachers tab without auth
+            if (tab === 'teachers' && !currentUser) {
+                openLoginModal();
+                return;
+            }
+
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(`${tab}-tab`).classList.add('active');
+
+            if (tab === 'teachers') {
+                loadTeacherSection();
+            }
+        }
+
+        // ========== TEACHER SECTION ==========
+        function loadTeacherSection() {
+            const container = document.getElementById('teacherAccessContent');
+            
+            if (!currentUser) {
+                container.innerHTML = `
+                    <div class="access-denied">
+                        <div class="access-denied-icon">🔒</div>
+                        <h3>Acceso Restringido</h3>
+                        <p>Necesitás iniciar sesión para acceder a esta sección</p>
+                        <button class="login-header-btn" onclick="openLoginModal()">🔐 Iniciar Sesión</button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="teacher-panel">
+                        <div class="success-message" id="successMessage">
+                            ✓ Planificación subida exitosamente
+                        </div>
+                        
+                        <h2 class="panel-header">Subir Planificación</h2>
+                        
+                        <form id="uploadForm" onsubmit="handleUpload(event)">
+                            <div class="form-group">
+                                <label for="courseSelect">Curso *</label>
+                                <select id="courseSelect" required>
+                                    <option value="">-- Selecciona un curso --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subjectInput">Materia *</label>
+                                <input type="text" id="subjectInput" placeholder="Ej: Matemáticas, Lengua, Historia..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="teacherName">Nombre del Profesor *</label>
+                                <input type="text" id="teacherName" placeholder="Tu nombre completo" value="${currentUser.name}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Descripción / Continuidad Pedagógica</label>
+                                <textarea id="description" placeholder="Describe brevemente el contenido de la planificación..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Archivo de Planificación</label>
+                                <div class="file-input-wrapper">
+                                    <label class="file-input-label" for="fileInput">
+                                        <span id="fileLabel">Haz clic para seleccionar archivo (PDF, DOC, DOCX)</span>
+                                    </label>
+                                    <input type="file" id="fileInput" accept=".pdf,.doc,.docx" onchange="updateFileName()">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn">📤 Subir Planificación</button>
+                        </form>
+                    </div>
+                `;
+                populateCourseSelect();
+            }
+        }
+
+        // ========== FILE UPLOAD ==========
+        function updateFileName() {
+            const input = document.getElementById('fileInput');
+            const label = document.getElementById('fileLabel');
+            if (input && input.files.length > 0) {
+                label.textContent = `✓ ${input.files[0].name}`;
+            }
+        }
+
+        function handleUpload(event) {
+            event.preventDefault();
+            
+            if (!currentUser) {
+                openLoginModal();
+                return;
+            }
+            
+            const courseId = document.getElementById('courseSelect').value;
+            const subject = document.getElementById('subjectInput').value;
+            const teacher = document.getElementById('teacherName').value;
+            const description = document.getElementById('description').value;
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput ? fileInput.files[0] : null;
+            
+            if (!materials[courseId]) {
+                materials[courseId] = [];
+            }
+            
+            const material = {
+                id: Date.now(),
+                subject: subject,
+                teacher: teacher,
+                description: description,
+                fileName: file ? file.name : 'Sin archivo adjunto',
+                date: new Date().toLocaleDateString('es-AR', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                }),
+                uploadedBy: currentUser.username
+            };
+            
+            materials[courseId].push(material);
+            saveMaterials();
+            
+            const successMsg = document.getElementById('successMessage');
+            if (successMsg) {
+                successMsg.classList.add('show');
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+            }
+            
+            document.getElementById('uploadForm').reset();
+            const fileLabel = document.getElementById('fileLabel');
+            if (fileLabel) {
+                fileLabel.textContent = 'Haz clic para seleccionar archivo (PDF, DOC, DOCX)';
+            }
+        }
+
+        // ========== MATERIALS MODAL ==========
+        function viewMaterials(courseId, courseName) {
+            const modal = document.getElementById('materialsModal');
+            const title = document.getElementById('modalTitle');
+            const list = document.getElementById('materialsList');
+            
+            title.textContent = `Materiales de ${courseName}`;
+            
+            const courseMaterials = materials[courseId] || [];
+            
+            if (courseMaterials.length === 0) {
+                list.innerHTML = '<div class="no-materials">No hay planificaciones disponibles para este curso todavía.</div>';
+            } else {
+                list.innerHTML = courseMaterials.map(material => `
+                    <div class="material-item">
+                        <div class="material-subject">${material.subject}</div>
+                        <div class="material-teacher">Profesor/a: ${material.teacher}</div>
+                        ${material.description ? `<div class="material-description">${material.description}</div>` : ''}
+                        <div class="material-date">📎 ${material.fileName} • Subido el ${material.date}</div>
+                    </div>
+                `).join('');
+            }
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('materialsModal').classList.remove('active');
+        }
+
+        function closeModalOnBackdrop(event) {
+            if (event.target.id === 'materialsModal') {
+                closeModal();
+            }
+        }
+
+        // ========== EDITABLE CONTENT ==========
+        function loadEditableContent() {
+            const saved = localStorage.getItem('schoolEditableContent');
+            if (saved) {
+                editableContent = JSON.parse(saved);
+            }
+        }
+
+        function saveEditableContent() {
+            localStorage.setItem('schoolEditableContent', JSON.stringify(editableContent));
+        }
+
+        function displayAllContent() {
+            document.getElementById('authoritiesContent').textContent = editableContent.authorities;
+            document.getElementById('agreementsContent').textContent = editableContent.agreements;
+            document.getElementById('regulationsContent').textContent = editableContent.regulations;
+            document.getElementById('datesContent').textContent = editableContent.dates;
+        }
+
+        function editContent(section) {
+            if (!currentUser) {
+                openLoginModal();
+                return;
+            }
+
+            currentEditSection = section;
+            const modal = document.getElementById('editModal');
+            const title = document.getElementById('editModalTitle');
+            const textarea = document.getElementById('editTextarea');
+            
+            const titles = {
+                authorities: 'Editar Autoridades',
+                agreements: 'Editar Acuerdos de Convivencia',
+                regulations: 'Editar Normativa',
+                dates: 'Editar Fechas Importantes'
+            };
+            
+            title.textContent = titles[section];
+            textarea.value = editableContent[section];
+            modal.classList.add('active');
+            textarea.focus();
+        }
+
+        function saveContent() {
+            const textarea = document.getElementById('editTextarea');
+            editableContent[currentEditSection] = textarea.value;
+            saveEditableContent();
+            displayAllContent();
+            closeEditModal();
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('active');
+            currentEditSection = '';
+        }
+
+        function closeEditModalOnBackdrop(event) {
+            if (event.target.id === 'editModal') {
+                closeEditModal();
+            }
+        }
+
+        // ========== STORAGE ==========
+        function saveMaterials() {
+            localStorage.setItem('schoolMaterials', JSON.stringify(materials));
+        }
+
+        function loadMaterials() {
+            const saved = localStorage.getItem('schoolMaterials');
+            if (saved) {
+                materials = JSON.parse(saved);
+            }
+        }
+
+        // ========== INITIALIZE ==========
+        init();
+    </script>
+</body>
+</html>

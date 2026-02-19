@@ -21,15 +21,9 @@
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --gradient-6: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Quicksand', sans-serif;
@@ -39,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -52,19 +45,16 @@
         .header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M30 0L35 25L60 30L35 35L30 60L25 35L0 30L25 25Z" fill="rgba(255,255,255,0.1)"/></svg>');
             opacity: 0.3;
             animation: sparkle 20s linear infinite;
         }
 
-        @keyframes sparkle {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-60px); }
-        }
+        @keyframes sparkle { 0% { transform: translateY(0); } 100% { transform: translateY(-60px); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
         .header-content {
             max-width: 1200px;
@@ -91,7 +81,6 @@
             font-weight: 400;
         }
 
-        /* Login Button in Header */
         .header-auth {
             display: flex;
             align-items: center;
@@ -108,9 +97,7 @@
             backdrop-filter: blur(10px);
         }
 
-        .user-info.show {
-            display: flex;
-        }
+        .user-info.show { display: flex; }
 
         .user-name {
             font-weight: 600;
@@ -136,14 +123,11 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Login Modal */
         .login-modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(8px);
             z-index: 2000;
@@ -167,11 +151,6 @@
             position: relative;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .login-header {
             text-align: center;
             margin-bottom: 2rem;
@@ -192,15 +171,13 @@
 
         .login-close {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1.5rem; right: 1.5rem;
             background: none;
             border: none;
             font-size: 1.5rem;
             color: var(--text-secondary);
             cursor: pointer;
-            width: 35px;
-            height: 35px;
+            width: 35px; height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -274,9 +251,7 @@
             border-left: 4px solid #dc2626;
         }
 
-        .login-error.show {
-            display: block;
-        }
+        .login-error.show { display: block; }
 
         .login-info {
             background: #dbeafe;
@@ -294,7 +269,6 @@
             font-size: 0.9rem;
         }
 
-        /* Navigation Tabs */
         .nav-tabs {
             background: white;
             box-shadow: 0 2px 10px var(--shadow);
@@ -343,7 +317,6 @@
             font-size: 0.8rem;
         }
 
-        /* Main Content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -355,16 +328,109 @@
             animation: fadeIn 0.5s ease;
         }
 
-        .tab-content.active {
-            display: block;
+        .tab-content.active { display: block; }
+
+        .info-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .panel-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        /* Course Grid */
+        .panel-header::before {
+            content: '📚';
+            font-size: 2rem;
+        }
+
+        .authorities-content {
+            background: var(--bg-main);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .authorities-content h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .authorities-content h3:first-child { margin-top: 0; }
+
+        .authorities-content .role {
+            font-weight: 700;
+            color: var(--text-primary);
+            display: inline-block;
+            width: 180px;
+        }
+
+        .authorities-content .name {
+            color: var(--text-secondary);
+        }
+
+        .section-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .section-btn {
+            flex: 1;
+            min-width: 200px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.25rem 2rem;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .section-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .section-btn:nth-child(2) {
+            background: var(--accent);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .section-btn:nth-child(2):hover {
+            background: #059669;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .section-btn:nth-child(3) {
+            background: var(--secondary);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .section-btn:nth-child(3):hover {
+            background: #d97706;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -386,20 +452,13 @@
         .course-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 6px;
             background: var(--gradient-1);
         }
 
-        .course-card:nth-child(3n+2)::before {
-            background: var(--gradient-2);
-        }
-
-        .course-card:nth-child(3n+3)::before {
-            background: var(--gradient-3);
-        }
+        .course-card:nth-child(3n+2)::before { background: var(--gradient-2); }
+        .course-card:nth-child(3n+3)::before { background: var(--gradient-3); }
 
         .course-card:hover {
             transform: translateY(-8px);
@@ -420,53 +479,7 @@
             margin-bottom: 1rem;
         }
 
-        .view-materials-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .view-materials-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.02);
-        }
-
-        /* Teacher Section */
-        .teacher-panel {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 20px var(--shadow);
-            margin-top: 2rem;
-        }
-
-        .panel-header {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .panel-header::before {
-            content: '📚';
-            font-size: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
 
         label {
             display: block;
@@ -533,7 +546,7 @@
             left: -9999px;
         }
 
-        .submit-btn {
+        .submit-btn, .edit-btn {
             background: var(--accent);
             color: white;
             border: none;
@@ -547,24 +560,54 @@
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover, .edit-btn:hover {
             background: #059669;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
 
-        /* Materials Modal */
+        .edit-btn {
+            background: var(--primary);
+            padding: 0.875rem 1.75rem;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .edit-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .content-display {
+            background: var(--bg-main);
+            padding: 2rem;
+            border-radius: 12px;
+            min-height: 200px;
+            border: 2px solid var(--border);
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .content-display:empty::before {
+            content: 'No hay contenido cargado todavía.';
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(4px);
             z-index: 1000;
-            animation: fadeIn 0.3s ease;
         }
 
         .modal.active {
@@ -577,7 +620,7 @@
             background: white;
             border-radius: 20px;
             padding: 2.5rem;
-            max-width: 700px;
+            max-width: 800px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
@@ -608,8 +651,7 @@
             color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -622,9 +664,7 @@
             transform: rotate(90deg);
         }
 
-        .materials-list {
-            margin-top: 1.5rem;
-        }
+        .materials-list { margin-top: 1.5rem; }
 
         .material-item {
             background: var(--bg-main);
@@ -664,6 +704,30 @@
             font-style: italic;
         }
 
+        .material-type-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-planificacion {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-continuidad {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-horario {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
         .no-materials {
             text-align: center;
             padding: 3rem;
@@ -689,113 +753,7 @@
             animation: slideDown 0.5s ease;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        /* Info Panel & Editable Sections */
-        .info-panel {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 20px var(--shadow);
-        }
-
-        .editable-section {
-            margin-top: 1.5rem;
-        }
-
-        .content-display {
-            background: var(--bg-main);
-            padding: 2rem;
-            border-radius: 12px;
-            min-height: 200px;
-            border: 2px solid var(--border);
-            line-height: 1.8;
-            white-space: pre-wrap;
-            font-size: 1rem;
-        }
-
-        .content-display:empty::before {
-            content: 'No hay contenido cargado todavía.';
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        .edit-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.875rem 1.75rem;
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .edit-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Edit Modal */
-        .edit-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
-        }
-
-        .edit-modal.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .edit-modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            max-width: 800px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
-        }
-
-        .edit-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .edit-modal-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
+        .success-message.show { display: block; }
 
         .edit-textarea {
             width: 100%;
@@ -857,7 +815,41 @@
             background: #475569;
         }
 
-        /* Access Denied */
+        .pdf-list-item {
+            background: var(--bg-main);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .pdf-list-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .pdf-info { flex: 1; }
+
+        .pdf-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .pdf-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .pdf-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
         .access-denied {
             text-align: center;
             padding: 4rem 2rem;
@@ -881,44 +873,30 @@
             margin-bottom: 2rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
-
-            .header-text h1 {
-                font-size: 2rem;
-            }
-
-            .tabs-container {
-                padding: 0 1rem;
-            }
-
+            .header-text h1 { font-size: 2rem; }
+            .tabs-container { padding: 0 1rem; }
             .tab-btn {
                 padding: 1rem 1.5rem;
                 font-size: 0.9rem;
             }
-
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-content, .edit-modal-content, .login-content {
+            .courses-grid { grid-template-columns: 1fr; }
+            .modal-content, .login-content {
                 padding: 1.5rem;
                 width: 95%;
             }
-
-            .teacher-panel, .info-panel {
-                padding: 1.5rem;
-            }
+            .info-panel { padding: 1.5rem; }
+            .section-buttons { flex-direction: column; }
+            .section-btn { min-width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="header-text">
@@ -935,11 +913,10 @@
         </div>
     </header>
 
-    <!-- Navigation Tabs -->
     <nav class="nav-tabs">
         <div class="tabs-container">
-            <button class="tab-btn" onclick="switchTab('authorities')">👥 Autoridades</button>
-            <button class="tab-btn active" onclick="switchTab('students')">👨‍🎓 Estudiantes</button>
+            <button class="tab-btn active" onclick="switchTab('authorities')">👥 Autoridades</button>
+            <button class="tab-btn" onclick="switchTab('students')">👨‍🎓 Estudiantes</button>
             <button class="tab-btn locked" onclick="switchTab('teachers')">👩‍🏫 Profesores</button>
             <button class="tab-btn" onclick="switchTab('agreements')">📋 Acuerdos de Convivencia</button>
             <button class="tab-btn" onclick="switchTab('regulations')">📜 Normativa</button>
@@ -947,67 +924,59 @@
         </div>
     </nav>
 
-    <!-- Main Container -->
     <div class="container">
-        <!-- Authorities Tab -->
-        <div id="authorities-tab" class="tab-content">
+        <div id="authorities-tab" class="tab-content active">
             <div class="info-panel">
                 <h2 class="panel-header">Autoridades de la Escuela</h2>
-                <div class="editable-section">
-                    <div id="authoritiesContent" class="content-display"></div>
-                    <button class="edit-btn" onclick="requestEditAccess('authorities')" id="editAuthoritiesBtn">✏️ Editar Contenido</button>
+                <div class="authorities-content">
+                    <div><span class="role">Director:</span> <span class="name">Rubio Germán</span></div>
+                    <div><span class="role">Vicedirector:</span> <span class="name">Marcos Rodríguez</span></div>
+                    <div><span class="role">Secretaria:</span> <span class="name">Verónica Gelati</span></div>
+                    <div><span class="role">Pro Secretaria:</span> <span class="name">Gabriela Accattoli</span></div>
+                    <h3>Orientaciones</h3>
+                    <div><span class="role">•</span> Ciencias Sociales</div>
+                    <div><span class="role">•</span> Arte - Danza</div>
                 </div>
             </div>
         </div>
 
-        <!-- Students Tab -->
-        <div id="students-tab" class="tab-content active">
-            <h2 class="panel-header">Selecciona tu curso</h2>
-            <div class="courses-grid" id="coursesGrid"></div>
-        </div>
-
-        <!-- Teachers Tab -->
-        <div id="teachers-tab" class="tab-content">
-            <div id="teacherAccessContent">
-                <!-- Content will be injected here -->
+        <div id="students-tab" class="tab-content">
+            <div class="info-panel">
+                <h2 class="panel-header">Acceso a Materiales por Curso</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Seleccioná tu curso para acceder a las planificaciones, continuidades pedagógicas y horarios.</p>
+                <div class="courses-grid" id="studentsCoursesGrid"></div>
             </div>
         </div>
 
-        <!-- Agreements Tab -->
+        <div id="teachers-tab" class="tab-content">
+            <div id="teacherAccessContent"></div>
+        </div>
+
         <div id="agreements-tab" class="tab-content">
             <div class="info-panel">
                 <h2 class="panel-header">Acuerdos Institucionales de Convivencia</h2>
-                <div class="editable-section">
-                    <div id="agreementsContent" class="content-display"></div>
-                    <button class="edit-btn" onclick="requestEditAccess('agreements')" id="editAgreementsBtn">✏️ Editar Contenido</button>
-                </div>
+                <div id="agreementsContent" class="content-display"></div>
+                <button class="edit-btn" onclick="requestEditAccess('agreements')" id="editAgreementsBtn">✏️ Editar Contenido</button>
             </div>
         </div>
 
-        <!-- Regulations Tab -->
         <div id="regulations-tab" class="tab-content">
             <div class="info-panel">
                 <h2 class="panel-header">Normativa Escolar</h2>
-                <div class="editable-section">
-                    <div id="regulationsContent" class="content-display"></div>
-                    <button class="edit-btn" onclick="requestEditAccess('regulations')" id="editRegulationsBtn">✏️ Editar Contenido</button>
-                </div>
+                <div id="regulationsPdfList" class="materials-list"></div>
+                <button class="edit-btn" onclick="requestEditAccess('regulations')" id="uploadRegulationBtn">📤 Subir Normativa (PDF)</button>
             </div>
         </div>
 
-        <!-- Important Dates Tab -->
         <div id="dates-tab" class="tab-content">
             <div class="info-panel">
                 <h2 class="panel-header">Fechas Importantes</h2>
-                <div class="editable-section">
-                    <div id="datesContent" class="content-display"></div>
-                    <button class="edit-btn" onclick="requestEditAccess('dates')" id="editDatesBtn">✏️ Editar Contenido</button>
-                </div>
+                <div id="datesContent" class="content-display"></div>
+                <button class="edit-btn" onclick="requestEditAccess('dates')" id="editDatesBtn">✏️ Editar Contenido</button>
             </div>
         </div>
     </div>
 
-    <!-- Login Modal -->
     <div id="loginModal" class="login-modal">
         <div class="login-content">
             <button class="login-close" onclick="closeLoginModal()">&times;</button>
@@ -1015,50 +984,55 @@
                 <h2>🔐 Acceso Restringido</h2>
                 <p class="login-subtitle">Solo personal autorizado</p>
             </div>
-            
-            <div class="login-error" id="loginError">
-                Usuario o contraseña incorrectos
-            </div>
-
+            <div class="login-error" id="loginError">Usuario o contraseña incorrectos</div>
             <form class="login-form" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label for="username">Usuario</label>
                     <input type="text" id="username" placeholder="Ingresá tu usuario" required autocomplete="username">
                 </div>
-
                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <input type="password" id="password" placeholder="Ingresá tu contraseña" required autocomplete="current-password">
                 </div>
-
                 <button type="submit" class="login-submit">Iniciar Sesión</button>
             </form>
-
             <div class="login-info">
                 <strong>💡 Usuarios de prueba:</strong>
                 <div>Director: <code>director</code> / <code>escuela56</code></div>
                 <div>Profesor: <code>profesor</code> / <code>escuela56</code></div>
-               
             </div>
         </div>
     </div>
 
-    <!-- Materials Modal -->
-    <div id="materialsModal" class="modal" onclick="closeModalOnBackdrop(event)">
+    <div id="courseMaterialsModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle"></h3>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
+                <h3 class="modal-title" id="courseMaterialsTitle"></h3>
+                <button class="close-btn" onclick="closeCourseMaterialsModal()">&times;</button>
             </div>
-            <div class="materials-list" id="materialsList"></div>
+            <div class="section-buttons">
+                <button class="section-btn" onclick="showCourseMaterials('planificacion')">📚 Planificaciones</button>
+                <button class="section-btn" onclick="showCourseMaterials('continuidad')">📝 Continuidad Pedagógica</button>
+                <button class="section-btn" onclick="showCourseMaterials('horario')">🕐 Horarios</button>
+            </div>
+            <div class="materials-list" id="courseMaterialsList"></div>
         </div>
     </div>
 
-    <!-- Edit Content Modal -->
-    <div id="editModal" class="edit-modal" onclick="closeEditModalOnBackdrop(event)">
-        <div class="edit-modal-content">
-            <div class="edit-modal-header">
-                <h3 class="edit-modal-title" id="editModalTitle"></h3>
+    <div id="teacherUploadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="teacherUploadTitle"></h3>
+                <button class="close-btn" onclick="closeTeacherUploadModal()">&times;</button>
+            </div>
+            <div id="teacherUploadForm"></div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="editModalTitle"></h3>
                 <button class="close-btn" onclick="closeEditModal()">&times;</button>
             </div>
             <textarea id="editTextarea" class="edit-textarea" placeholder="Escribí el contenido aquí..."></textarea>
@@ -1069,131 +1043,42 @@
         </div>
     </div>
 
+    <div id="uploadPdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Subir Normativa PDF</h3>
+                <button class="close-btn" onclick="closeUploadPdfModal()">&times;</button>
+            </div>
+            <form id="pdfUploadForm" onsubmit="handlePdfUpload(event)">
+                <div class="form-group">
+                    <label for="pdfName">Nombre del documento *</label>
+                    <input type="text" id="pdfName" placeholder="Ej: Resolución 1709/09" required>
+                </div>
+                <div class="form-group">
+                    <label>Archivo PDF</label>
+                    <div class="file-input-wrapper">
+                        <label class="file-input-label" for="pdfFileInput">
+                            <span id="pdfFileLabel">Seleccionar archivo PDF</span>
+                        </label>
+                        <input type="file" id="pdfFileInput" accept=".pdf" onchange="updatePdfFileName()" required>
+                    </div>
+                </div>
+                <div class="edit-actions">
+                    <button type="button" class="cancel-edit-btn" onclick="closeUploadPdfModal()">Cancelar</button>
+                    <button type="submit" class="save-edit-btn">📤 Subir PDF</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // ========== AUTHENTICATION SYSTEM ==========
-        
-        // User credentials (in production, this should be on a server)
         const users = {
-            'director': { password: 'escuela56', role: 'admin', name: 'Director/a' },
-            'profesor': { password: 'escuela56', role: 'teacher', name: 'Profesor/a' },
-            'secretaria': { password: 'escuela56', role: 'admin', name: 'Secretaria' }
+            'director': { password: 'escuela56', role: 'admin', name: 'Director' },
+            'profesor': { password: 'escuela56', role: 'teacher', name: 'Profesor' }
         };
 
         let currentUser = null;
 
-        // Check if user is logged in on page load
-        function checkAuth() {
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                updateAuthUI();
-            }
-        }
-
-        // Handle login form submission
-        function handleLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('loginError');
-
-            if (users[username] && users[username].password === password) {
-                currentUser = {
-                    username: username,
-                    role: users[username].role,
-                    name: users[username].name
-                };
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                updateAuthUI();
-                closeLoginModal();
-                errorDiv.classList.remove('show');
-                
-                // If on teachers tab, reload it
-                if (document.getElementById('teachers-tab').classList.contains('active')) {
-                    loadTeacherSection();
-                }
-            } else {
-                errorDiv.classList.add('show');
-            }
-        }
-
-        // Logout
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('currentUser');
-            updateAuthUI();
-            
-            // If on teachers tab, switch to students
-            if (document.getElementById('teachers-tab').classList.contains('active')) {
-                switchTab('students');
-            }
-            
-            loadTeacherSection();
-        }
-
-        // Update UI based on auth status
-        function updateAuthUI() {
-            const userInfo = document.getElementById('userInfo');
-            const userName = document.getElementById('userName');
-            const loginBtn = document.getElementById('loginHeaderBtn');
-
-            if (currentUser) {
-                userName.textContent = `👤 ${currentUser.name}`;
-                userInfo.classList.add('show');
-                loginBtn.style.display = 'none';
-                
-                // Update tabs
-                document.querySelectorAll('.tab-btn.locked').forEach(btn => {
-                    btn.classList.remove('locked');
-                });
-            } else {
-                userInfo.classList.remove('show');
-                loginBtn.style.display = 'block';
-                
-                // Lock teacher tab
-                const teacherTab = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
-                    btn.textContent.includes('Profesores')
-                );
-                if (teacherTab && !teacherTab.classList.contains('locked')) {
-                    teacherTab.classList.add('locked');
-                }
-            }
-        }
-
-        // Open login modal
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.add('active');
-            document.getElementById('username').focus();
-        }
-
-        // Close login modal
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.remove('active');
-            document.getElementById('loginError').classList.remove('show');
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-        }
-
-        // Request edit access
-        function requestEditAccess(section) {
-            if (!currentUser) {
-                openLoginModal();
-                return;
-            }
-            editContent(section);
-        }
-
-        // ========== DATA STRUCTURES ==========
-        let materials = {};
-        let editableContent = {
-            authorities: '',
-            agreements: '',
-            regulations: '',
-            dates: ''
-        };
-        let currentEditSection = '';
-
-        // Course configuration
         const courses = [
             { id: '1a', name: 'Primero A', year: 1, section: 'A' },
             { id: '1b', name: 'Primero B', year: 1, section: 'B' },
@@ -1215,44 +1100,92 @@
             { id: '6c', name: 'Sexto C', year: 6, section: 'C' }
         ];
 
-        // ========== INITIALIZATION ==========
+        let materials = { planificacion: {}, continuidad: {}, horario: {} };
+        let editableContent = { agreements: '', dates: '' };
+        let regulations = [];
+        let currentEditSection = '';
+        let currentCourse = null;
+        let currentMaterialType = '';
+
         function init() {
             checkAuth();
-            renderCourseCards();
-            populateCourseSelect();
-            loadMaterials();
-            loadEditableContent();
-            displayAllContent();
-            loadTeacherSection();
+            loadAllData();
+            renderStudentsCourseGrid();
+            displayEditableContent();
+            displayRegulations();
         }
 
-        // ========== COURSE FUNCTIONS ==========
-        function renderCourseCards() {
-            const grid = document.getElementById('coursesGrid');
-            grid.innerHTML = courses.map(course => `
-                <div class="course-card" onclick="viewMaterials('${course.id}', '${course.name}')">
-                    <h3 class="course-title">${course.name}</h3>
-                    <p class="course-subtitle">Año ${course.year} - Sección ${course.section}</p>
-                    <button class="view-materials-btn">Ver Materiales</button>
-                </div>
-            `).join('');
-        }
-
-        function populateCourseSelect() {
-            const select = document.getElementById('courseSelect');
-            if (select) {
-                courses.forEach(course => {
-                    const option = document.createElement('option');
-                    option.value = course.id;
-                    option.textContent = course.name;
-                    select.appendChild(option);
-                });
+        function checkAuth() {
+            const saved = localStorage.getItem('currentUser');
+            if (saved) {
+                currentUser = JSON.parse(saved);
+                updateAuthUI();
             }
         }
 
-        // ========== TAB SWITCHING ==========
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+
+            if (users[username] && users[username].password === password) {
+                currentUser = { username, role: users[username].role, name: users[username].name };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                updateAuthUI();
+                closeLoginModal();
+                errorDiv.classList.remove('show');
+                if (document.getElementById('teachers-tab').classList.contains('active')) {
+                    loadTeacherSection();
+                }
+            } else {
+                errorDiv.classList.add('show');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthUI();
+            if (document.getElementById('teachers-tab').classList.contains('active')) {
+                switchTab('authorities');
+            }
+            loadTeacherSection();
+        }
+
+        function updateAuthUI() {
+            const userInfo = document.getElementById('userInfo');
+            const userName = document.getElementById('userName');
+            const loginBtn = document.getElementById('loginHeaderBtn');
+
+            if (currentUser) {
+                userName.textContent = `👤 ${currentUser.name}`;
+                userInfo.classList.add('show');
+                loginBtn.style.display = 'none';
+                document.querySelectorAll('.tab-btn.locked').forEach(btn => btn.classList.remove('locked'));
+            } else {
+                userInfo.classList.remove('show');
+                loginBtn.style.display = 'block';
+                const teacherTab = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.textContent.includes('Profesores'));
+                if (teacherTab && !teacherTab.classList.contains('locked')) {
+                    teacherTab.classList.add('locked');
+                }
+            }
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('username').focus();
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('loginError').classList.remove('show');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
         function switchTab(tab) {
-            // Check if trying to access teachers tab without auth
             if (tab === 'teachers' && !currentUser) {
                 openLoginModal();
                 return;
@@ -1260,19 +1193,59 @@
 
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
             event.target.classList.add('active');
             document.getElementById(`${tab}-tab`).classList.add('active');
 
-            if (tab === 'teachers') {
-                loadTeacherSection();
+            if (tab === 'teachers') loadTeacherSection();
+        }
+
+        function renderStudentsCourseGrid() {
+            const grid = document.getElementById('studentsCoursesGrid');
+            grid.innerHTML = courses.map(course => `
+                <div class="course-card" onclick="openCourseMaterials('${course.id}', '${course.name}')">
+                    <h3 class="course-title">${course.name}</h3>
+                    <p class="course-subtitle">Año ${course.year} - Sección ${course.section}</p>
+                </div>
+            `).join('');
+        }
+
+        function openCourseMaterials(courseId, courseName) {
+            currentCourse = courseId;
+            document.getElementById('courseMaterialsTitle').textContent = courseName;
+            document.getElementById('courseMaterialsList').innerHTML = '';
+            document.getElementById('courseMaterialsModal').classList.add('active');
+        }
+
+        function showCourseMaterials(type) {
+            currentMaterialType = type;
+            const list = document.getElementById('courseMaterialsList');
+            const courseMaterials = materials[type][currentCourse] || [];
+            const typeNames = { planificacion: 'Planificación', continuidad: 'Continuidad Pedagógica', horario: 'Horario' };
+            const badgeClasses = { planificacion: 'badge-planificacion', continuidad: 'badge-continuidad', horario: 'badge-horario' };
+
+            if (courseMaterials.length === 0) {
+                list.innerHTML = `<div class="no-materials">No hay ${typeNames[type].toLowerCase()} disponible para este curso.</div>`;
+            } else {
+                list.innerHTML = courseMaterials.map(material => `
+                    <div class="material-item">
+                        <span class="material-type-badge ${badgeClasses[type]}">${typeNames[type]}</span>
+                        <div class="material-subject">${material.subject}</div>
+                        <div class="material-teacher">Profesor/a: ${material.teacher}</div>
+                        ${material.description ? `<div class="material-description">${material.description}</div>` : ''}
+                        <div class="material-date">📎 ${material.fileName} • ${material.date}</div>
+                    </div>
+                `).join('');
             }
         }
 
-        // ========== TEACHER SECTION ==========
+        function closeCourseMaterialsModal() {
+            document.getElementById('courseMaterialsModal').classList.remove('active');
+            currentCourse = null;
+            currentMaterialType = '';
+        }
+
         function loadTeacherSection() {
             const container = document.getElementById('teacherAccessContent');
-            
             if (!currentUser) {
                 container.innerHTML = `
                     <div class="access-denied">
@@ -1284,185 +1257,138 @@
                 `;
             } else {
                 container.innerHTML = `
-                    <div class="teacher-panel">
-                        <div class="success-message" id="successMessage">
-                            ✓ Planificación subida exitosamente
+                    <div class="info-panel">
+                        <h2 class="panel-header">Panel de Profesores</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Seleccioná el tipo de material que querés subir.</p>
+                        <div class="section-buttons">
+                            <button class="section-btn" onclick="openTeacherUpload('planificacion')">📚 Subir Planificación</button>
+                            <button class="section-btn" onclick="openTeacherUpload('continuidad')">📝 Subir Continuidad Pedagógica</button>
+                            <button class="section-btn" onclick="openTeacherUpload('horario')">🕐 Subir Horario</button>
                         </div>
-                        
-                        <h2 class="panel-header">Subir Planificación</h2>
-                        
-                        <form id="uploadForm" onsubmit="handleUpload(event)">
-                            <div class="form-group">
-                                <label for="courseSelect">Curso *</label>
-                                <select id="courseSelect" required>
-                                    <option value="">-- Selecciona un curso --</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="subjectInput">Materia *</label>
-                                <input type="text" id="subjectInput" placeholder="Ej: Matemáticas, Lengua, Historia..." required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="teacherName">Nombre del Profesor *</label>
-                                <input type="text" id="teacherName" placeholder="Tu nombre completo" value="${currentUser.name}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description">Descripción / Continuidad Pedagógica</label>
-                                <textarea id="description" placeholder="Describe brevemente el contenido de la planificación..."></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Archivo de Planificación</label>
-                                <div class="file-input-wrapper">
-                                    <label class="file-input-label" for="fileInput">
-                                        <span id="fileLabel">Haz clic para seleccionar archivo (PDF, DOC, DOCX)</span>
-                                    </label>
-                                    <input type="file" id="fileInput" accept=".pdf,.doc,.docx" onchange="updateFileName()">
-                                </div>
-                            </div>
-
-                            <button type="submit" class="submit-btn">📤 Subir Planificación</button>
-                        </form>
                     </div>
                 `;
-                populateCourseSelect();
             }
         }
 
-        // ========== FILE UPLOAD ==========
-        function updateFileName() {
-            const input = document.getElementById('fileInput');
-            const label = document.getElementById('fileLabel');
-            if (input && input.files.length > 0) {
-                label.textContent = `✓ ${input.files[0].name}`;
-            }
+        function openTeacherUpload(type) {
+            const typeNames = { planificacion: 'Planificación', continuidad: 'Continuidad Pedagógica', horario: 'Horario' };
+            document.getElementById('teacherUploadTitle').textContent = `Subir ${typeNames[type]}`;
+            
+            const formHtml = `
+                <div class="success-message" id="uploadSuccess">✓ ${typeNames[type]} subida exitosamente</div>
+                <form id="materialUploadForm" onsubmit="handleMaterialUpload(event, '${type}')">
+                    <div class="form-group">
+                        <label for="materialCourse">Curso *</label>
+                        <select id="materialCourse" required>
+                            <option value="">-- Selecciona un curso --</option>
+                            ${courses.map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="materialSubject">Materia *</label>
+                        <input type="text" id="materialSubject" placeholder="Ej: Matemáticas, Lengua, Historia..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="materialTeacher">Nombre del Profesor *</label>
+                        <input type="text" id="materialTeacher" value="${currentUser.name}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="materialDescription">Descripción</label>
+                        <textarea id="materialDescription" placeholder="Describe brevemente el contenido..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Archivo</label>
+                        <div class="file-input-wrapper">
+                            <label class="file-input-label" for="materialFile">
+                                <span id="materialFileLabel">Seleccionar archivo (PDF, DOC, DOCX)</span>
+                            </label>
+                            <input type="file" id="materialFile" accept=".pdf,.doc,.docx" onchange="updateMaterialFileName()" required>
+                        </div>
+                    </div>
+                    <div class="edit-actions">
+                        <button type="button" class="cancel-edit-btn" onclick="closeTeacherUploadModal()">Cancelar</button>
+                        <button type="submit" class="save-edit-btn">📤 Subir</button>
+                    </div>
+                </form>
+            `;
+
+            document.getElementById('teacherUploadForm').innerHTML = formHtml;
+            document.getElementById('teacherUploadModal').classList.add('active');
         }
 
-        function handleUpload(event) {
+        function updateMaterialFileName() {
+            const input = document.getElementById('materialFile');
+            const label = document.getElementById('materialFileLabel');
+            if (input && input.files.length > 0) label.textContent = `✓ ${input.files[0].name}`;
+        }
+
+        function handleMaterialUpload(event, type) {
             event.preventDefault();
-            
-            if (!currentUser) {
-                openLoginModal();
-                return;
-            }
-            
-            const courseId = document.getElementById('courseSelect').value;
-            const subject = document.getElementById('subjectInput').value;
-            const teacher = document.getElementById('teacherName').value;
-            const description = document.getElementById('description').value;
-            const fileInput = document.getElementById('fileInput');
+            const courseId = document.getElementById('materialCourse').value;
+            const subject = document.getElementById('materialSubject').value;
+            const teacher = document.getElementById('materialTeacher').value;
+            const description = document.getElementById('materialDescription').value;
+            const fileInput = document.getElementById('materialFile');
             const file = fileInput ? fileInput.files[0] : null;
             
-            if (!materials[courseId]) {
-                materials[courseId] = [];
+            if (!materials[type][courseId]) materials[type][courseId] = [];
+
+            if (type === 'planificacion' && materials[type][courseId].length >= 1) {
+                alert('Ya existe una planificación para este curso.');
+                return;
+            }
+            if (type === 'horario' && materials[type][courseId].length >= 1) {
+                alert('Ya existe un horario para este curso.');
+                return;
+            }
+            if (type === 'continuidad' && materials[type][courseId].length >= 15) {
+                alert('Límite de 15 continuidades alcanzado.');
+                return;
             }
             
             const material = {
                 id: Date.now(),
-                subject: subject,
-                teacher: teacher,
-                description: description,
-                fileName: file ? file.name : 'Sin archivo adjunto',
-                date: new Date().toLocaleDateString('es-AR', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                }),
+                subject, teacher, description,
+                fileName: file ? file.name : 'Sin archivo',
+                date: new Date().toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' }),
                 uploadedBy: currentUser.username
             };
             
-            materials[courseId].push(material);
+            materials[type][courseId].push(material);
             saveMaterials();
             
-            const successMsg = document.getElementById('successMessage');
+            const successMsg = document.getElementById('uploadSuccess');
             if (successMsg) {
                 successMsg.classList.add('show');
-                setTimeout(() => successMsg.classList.remove('show'), 3000);
-            }
-            
-            document.getElementById('uploadForm').reset();
-            const fileLabel = document.getElementById('fileLabel');
-            if (fileLabel) {
-                fileLabel.textContent = 'Haz clic para seleccionar archivo (PDF, DOC, DOCX)';
+                setTimeout(() => {
+                    successMsg.classList.remove('show');
+                    closeTeacherUploadModal();
+                }, 2000);
             }
         }
 
-        // ========== MATERIALS MODAL ==========
-        function viewMaterials(courseId, courseName) {
-            const modal = document.getElementById('materialsModal');
-            const title = document.getElementById('modalTitle');
-            const list = document.getElementById('materialsList');
-            
-            title.textContent = `Materiales de ${courseName}`;
-            
-            const courseMaterials = materials[courseId] || [];
-            
-            if (courseMaterials.length === 0) {
-                list.innerHTML = '<div class="no-materials">No hay planificaciones disponibles para este curso todavía.</div>';
-            } else {
-                list.innerHTML = courseMaterials.map(material => `
-                    <div class="material-item">
-                        <div class="material-subject">${material.subject}</div>
-                        <div class="material-teacher">Profesor/a: ${material.teacher}</div>
-                        ${material.description ? `<div class="material-description">${material.description}</div>` : ''}
-                        <div class="material-date">📎 ${material.fileName} • Subido el ${material.date}</div>
-                    </div>
-                `).join('');
-            }
-            
-            modal.classList.add('active');
+        function closeTeacherUploadModal() {
+            document.getElementById('teacherUploadModal').classList.remove('active');
         }
 
-        function closeModal() {
-            document.getElementById('materialsModal').classList.remove('active');
-        }
-
-        function closeModalOnBackdrop(event) {
-            if (event.target.id === 'materialsModal') {
-                closeModal();
-            }
-        }
-
-        // ========== EDITABLE CONTENT ==========
-        function loadEditableContent() {
-            const saved = localStorage.getItem('schoolEditableContent');
-            if (saved) {
-                editableContent = JSON.parse(saved);
-            }
-        }
-
-        function saveEditableContent() {
-            localStorage.setItem('schoolEditableContent', JSON.stringify(editableContent));
-        }
-
-        function displayAllContent() {
-            document.getElementById('authoritiesContent').textContent = editableContent.authorities;
-            document.getElementById('agreementsContent').textContent = editableContent.agreements;
-            document.getElementById('regulationsContent').textContent = editableContent.regulations;
-            document.getElementById('datesContent').textContent = editableContent.dates;
-        }
-
-        function editContent(section) {
-            if (!currentUser) {
+        function requestEditAccess(section) {
+            if (!currentUser || currentUser.role !== 'admin') {
                 openLoginModal();
                 return;
             }
+            if (section === 'regulations') {
+                openUploadPdfModal();
+            } else {
+                editContent(section);
+            }
+        }
 
+        function editContent(section) {
             currentEditSection = section;
             const modal = document.getElementById('editModal');
             const title = document.getElementById('editModalTitle');
             const textarea = document.getElementById('editTextarea');
-            
-            const titles = {
-                authorities: 'Editar Autoridades',
-                agreements: 'Editar Acuerdos de Convivencia',
-                regulations: 'Editar Normativa',
-                dates: 'Editar Fechas Importantes'
-            };
-            
+            const titles = { agreements: 'Editar Acuerdos de Convivencia', dates: 'Editar Fechas Importantes' };
             title.textContent = titles[section];
             textarea.value = editableContent[section];
             modal.classList.add('active');
@@ -1473,7 +1399,7 @@
             const textarea = document.getElementById('editTextarea');
             editableContent[currentEditSection] = textarea.value;
             saveEditableContent();
-            displayAllContent();
+            displayEditableContent();
             closeEditModal();
         }
 
@@ -1482,25 +1408,72 @@
             currentEditSection = '';
         }
 
-        function closeEditModalOnBackdrop(event) {
-            if (event.target.id === 'editModal') {
-                closeEditModal();
+        function displayEditableContent() {
+            document.getElementById('agreementsContent').textContent = editableContent.agreements;
+            document.getElementById('datesContent').textContent = editableContent.dates;
+        }
+
+        function openUploadPdfModal() {
+            document.getElementById('uploadPdfModal').classList.add('active');
+        }
+
+        function closeUploadPdfModal() {
+            document.getElementById('uploadPdfModal').classList.remove('active');
+            document.getElementById('pdfUploadForm').reset();
+            document.getElementById('pdfFileLabel').textContent = 'Seleccionar archivo PDF';
+        }
+
+        function updatePdfFileName() {
+            const input = document.getElementById('pdfFileInput');
+            const label = document.getElementById('pdfFileLabel');
+            if (input && input.files.length > 0) label.textContent = `✓ ${input.files[0].name}`;
+        }
+
+        function handlePdfUpload(event) {
+            event.preventDefault();
+            const name = document.getElementById('pdfName').value;
+            const fileInput = document.getElementById('pdfFileInput');
+            const file = fileInput ? fileInput.files[0] : null;
+            
+            const pdf = {
+                id: Date.now(),
+                name,
+                fileName: file ? file.name : 'documento.pdf',
+                date: new Date().toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' }),
+                uploadedBy: currentUser.username
+            };
+            
+            regulations.push(pdf);
+            saveRegulations();
+            displayRegulations();
+            closeUploadPdfModal();
+        }
+
+        function displayRegulations() {
+            const list = document.getElementById('regulationsPdfList');
+            if (regulations.length === 0) {
+                list.innerHTML = '<div class="no-materials">No hay normativas cargadas todavía.</div>';
+            } else {
+                list.innerHTML = regulations.map(pdf => `
+                    <div class="pdf-list-item">
+                        <span class="pdf-icon">📄</span>
+                        <div class="pdf-info">
+                            <div class="pdf-name">${pdf.name}</div>
+                            <div class="pdf-date">📎 ${pdf.fileName} • Subido el ${pdf.date}</div>
+                        </div>
+                    </div>
+                `).join('');
             }
         }
 
-        // ========== STORAGE ==========
-        function saveMaterials() {
-            localStorage.setItem('schoolMaterials', JSON.stringify(materials));
-        }
+        function saveMaterials() { localStorage.setItem('schoolMaterialsV2', JSON.stringify(materials)); }
+        function loadMaterials() { const saved = localStorage.getItem('schoolMaterialsV2'); if (saved) materials = JSON.parse(saved); }
+        function saveEditableContent() { localStorage.setItem('schoolEditableContentV2', JSON.stringify(editableContent)); }
+        function loadEditableContent() { const saved = localStorage.getItem('schoolEditableContentV2'); if (saved) editableContent = JSON.parse(saved); }
+        function saveRegulations() { localStorage.setItem('schoolRegulations', JSON.stringify(regulations)); }
+        function loadRegulations() { const saved = localStorage.getItem('schoolRegulations'); if (saved) regulations = JSON.parse(saved); }
+        function loadAllData() { loadMaterials(); loadEditableContent(); loadRegulations(); }
 
-        function loadMaterials() {
-            const saved = localStorage.getItem('schoolMaterials');
-            if (saved) {
-                materials = JSON.parse(saved);
-            }
-        }
-
-        // ========== INITIALIZE ==========
         init();
     </script>
 </body>
